@@ -1,0 +1,206 @@
+<html>
+<head>
+    <title>My first HTML Page</title>
+</head>
+
+<body>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-1</h1>
+    <h1>Hello, World!</h1>
+    <p>This is my first HTML page.</p>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-2</h1>
+    <h2>HTML Basics</h2>
+    <p>This is a brief introduction to HTML basics.</p>
+
+    <h3>HTML Headings</h3>
+    <p>HTML provides six levels of headings, from <h1> (the largest) to <h6> (the smallest).</p>
+
+    <h3>Unordered List</h3>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <h3>Ordered List</h3>
+    <ol>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-3</h1>
+    <h2>Links and Images</h2>
+
+    <h3>Hyperlinks</h3>
+    <p>
+        Visit the official website of HTML:
+        <a href="https://developer.mozilla.org/enUS/docs/Web/HTML"> MDN Web Docs - HTML </a>
+    </p>
+
+    <h3>Images</h3>
+    <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+
+    <h1 style="background-color: gray; text-align: center;">Lab-4</h1>
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-5</h1>
+    <h1>Welcome to Khan Restaurant</h1>
+
+    <ul>
+        <li>Starters
+            <ul>
+                <li>Soup</li>
+                <li>Salad</li>
+                <li>Spring Rolls</li>
+            </ul>
+        </li>
+
+        <li>Main Course
+            <ul>
+                <li>Pasta</li>
+                <li>Steak</li>
+                <li>Grilled Chicken</li>
+            </ul>
+        </li>
+
+        <li>Desserts
+            <ul>
+                <li>Ice Cream</li>
+                <li>Cake</li>
+                <li>Pudding</li>
+            </ul>
+        </li>
+
+        <li>Beverages
+            <ul>
+                <li>Tea</li>
+                <li>Coffee</li>
+                <li>Juice</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Today's Special</h2>
+    <ol>
+        <li>Grilled Chicken with Herbs</li>
+        <li>Chocolate Lava Cake</li>
+        <li>Mango Smoothie</li>
+    </ol>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-6</h1>
+
+    <table border="1">
+        <caption><strong>Table Reservation Slots</strong></caption>
+        <tr>
+            <th>Time Slot</th>
+            <th>2-Seater</th>
+            <th>4-Seater</th>
+            <th>6-Seater</th>
+        </tr>
+
+        <tr>
+            <td>12:00 PM - 1:00 PM</td>
+            <td>Available</td>
+            <td>Reserved</td>
+            <td>Available</td>
+        </tr>
+
+        <tr>
+            <td>1:00 PM - 2:00 PM</td>
+            <td>Available</td>
+            <td>Reserved</td>
+            <td>Available</td>
+        </tr>
+
+        <tr>
+            <td>2:00 PM - 3:00 PM</td>
+            <td>Available</td>
+            <td>Reserved</td>
+            <td>Available</td>
+        </tr>
+
+        <tr>
+            <td>3:00 PM - 4:00 PM</td>
+            <td>Available</td>
+            <td>Reserved</td>
+            <td>Available</td>
+        </tr>
+
+        <tr>
+            <td>4:00 PM - 5:00 PM</td>
+            <td>Available</td>
+            <td>Reserved</td>
+            <td>Available</td>
+        </tr>
+    </table>
+
+    <h1 style="background-color: gray; text-align: center;">Lab-7</h1>
+    <h1>We Value Your Feedback!</h1>
+
+    <form>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        <br><br>
+
+        <label for="Email">Email:</label>
+        <input type="text" id="Email" name="Email" placeholder="Enter your Email">
+        <br><br>
+
+        <label>Food Quality:</label><br>
+
+        <input type="radio" id="rating1" name="food_rating" value="1">
+        <label for="rating1">1</label>
+
+        <input type="radio" id="rating2" name="food_rating" value="2">
+        <label for="rating2">2</label>
+
+        <input type="radio" id="rating3" name="food_rating" value="3">
+        <label for="rating3">3</label>
+
+        <input type="radio" id="rating4" name="food_rating" value="4">
+        <label for="rating4">4</label>
+
+        <input type="radio" id="rating5" name="food_rating" value="5">
+        <label for="rating5">5</label>
+
+        <br><br>
+
+        <label for="service-rating">Service Rating:</label>
+        <select id="service-rating" name="service-rating">
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Average</option>
+            <option>Poor</option>
+        </select>
+
+        <br><br>
+
+        <label>What did you like about the ambiance? (Check all that apply):</label><br>
+        <input type="checkbox" name="ambiance" value="music"> Music
+        <input type="checkbox" name="ambiance" value="lighting"> Lighting
+        <input type="checkbox" name="ambiance" value="comfort"> Comfort
+
+        <br><br>
+
+        <label for="comments">Additional Comments:</label><br>
+        <textarea id="comments" name="comments" placeholder="Write your comments here..."></textarea>
+
+        <br><br>
+
+        <input type="submit" value="Submit Feedback">
+
+    </form>
+
+</body>
+</html>
