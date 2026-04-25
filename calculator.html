@@ -1,0 +1,117 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>EcoStir Calculator</title>
+        <style>
+            body { 
+                background-color: #f4f1ea; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh; 
+            }
+
+            .calc-container {
+                background-color: #2d2d2d; 
+                color: white;
+                padding: 40px; 
+                border-radius: 20px;
+                display: flex; 
+                flex-direction: column; 
+                align-items: center;
+                width: 380px;
+                border-top: 8px solid #f1c40f; /* Gold accent */
+            }
+
+            h1 { margin-bottom: 25px; font-size: 22px; color: #f1c40f; text-transform: uppercase; letter-spacing: 1px; }
+
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            input {
+                padding: 12px;
+                border-radius: 5px;
+                border: none;
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .button-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                width: 100%;
+            }
+
+            button {
+                padding: 15px;
+                border: none;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+                font-size: 14px;
+                color: white;
+            }
+
+            .btn-add { background-color: #27ae60; }
+            .btn-sub { background-color: #e74c3c; }
+            .btn-mul { background-color: #2980b9; }
+            .btn-div { background-color: #8e44ad; }
+
+            #Answer { 
+                margin-top: 30px; 
+                padding: 20px;
+                background-color: #1a1a1a;
+                width: 100%;
+                text-align: center;
+                border-radius: 10px;
+                color: #f1c40f;
+                font-size: 28px;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="calc-container"> 
+            <h1>Simple Calculator</h1>
+            
+            <div class="input-group">
+                <input id="val1" type="number" placeholder="First Value">
+                <input id="val2" type="number" placeholder="Second Value">
+            </div>
+
+            <div class="button-grid">
+                <button class="btn-add" onclick="calculate('add')">ADD +</button>
+                <button class="btn-sub" onclick="calculate('sub')">SUB -</button>
+                <button class="btn-mul" onclick="calculate('mul')">PRODUCT ×</button>
+                <button class="btn-div" onclick="calculate('div')">DIVISION ÷</button>
+            </div>
+
+            <h2 id="Answer">0</h2>
+        </div>
+
+        <script>
+            function calculate(operation) {
+                let v1 = Number(document.getElementById("val1").value);
+                let v2 = Number(document.getElementById("val2").value);
+                let result = 0;
+
+                if (operation === 'add') result = v1 + v2;
+                if (operation === 'sub') result = v1 - v2;
+                if (operation === 'mul') result = v1 * v2;
+                if (operation === 'div') {
+                    result = v2 !== 0 ? v1 / v2 : "Error";
+                }
+
+                document.getElementById("Answer").innerText = result;
+            }
+        </script>
+
+    </body>
+</html>
