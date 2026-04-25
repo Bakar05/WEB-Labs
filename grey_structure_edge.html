@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: #d1d1d1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 15px 25px; 
+            flex-shrink: 0;
+        }
+
+        .header-box { 
+            background: #999; 
+            height: 35px; 
+            border-radius: 4px; 
+        }
+
+        .search-section { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 10px; 
+            flex-shrink: 0; 
+        }
+
+        .search-bar { 
+            width: 60%; 
+            height: 40px; 
+            background: white; 
+            border-radius: 20px; 
+            margin-bottom: 15px; 
+        }
+
+        .shortcuts { 
+            display: flex; 
+            gap: 30px; 
+        }
+
+        .dot { 
+            width: 30px; 
+            height: 30px; 
+            background: #aaa; 
+            border-radius: 8px; 
+        }
+
+        .content-wrapper {
+            background-color: #f8f8f8;
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto 10px; 
+            padding: 15px;
+            border-radius: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-nav {
+            display: flex; 
+            gap: 15px; 
+            border-bottom: 1px solid #eee; 
+            margin-bottom: 15px; 
+            flex-shrink: 0;
+        }
+
+        .nav-item { 
+            width: 60px; 
+            height: 10px; 
+            background: #ccc; 
+        }
+
+        .news-feed {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 1fr 1fr; 
+            gap: 15px;
+            flex-grow: 1; 
+        }
+
+        .article {
+            background-color: #c4c4c4; 
+            border: 1px solid #bbb;
+            border-radius: 8px;
+        }
+
+        .main-story { 
+            grid-column: 1 / 7; 
+        }
+
+        .sub-story {
+            grid-column: span 3; 
+        }
+
+        .feature-story {
+            grid-column: 7 / 13; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-box" style="width: 35px;"></div>
+        <div class="header-box" style="width: 110px;"></div>
+    </header>
+    
+    <section class="search-section">
+        <div class="search-bar"></div>
+        <div class="shortcuts">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </section>
+
+    <main class="content-wrapper">
+        <nav class="category-nav">
+            <div class="nav-item" style="background:#777"></div>
+            <div class="nav-item"></div>
+            <div class="nav-item"></div>
+            <div class="nav-item"></div>
+        </nav>
+
+        <div class="news-feed">
+            <div class="article main-story"></div>
+            <div class="article sub-story"></div>
+            <div class="article sub-story"></div>
+
+            <div class="article sub-story"></div>
+            <div class="article sub-story"></div>
+            <div class="article feature-story"></div>
+        </div>
+    </main>
+
+</body>
+</html>
