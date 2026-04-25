@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            min-height: 100vh; 
+            background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            display: flex; 
+            flex-direction: column; 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 15px 40px; 
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .logo { font-weight: 800; font-size: 32px; color: #0078d4; }
+        .auth-btn { 
+            background: #0078d4; color: #ffffff; 
+            padding: 8px 20px; border-radius: 6px; 
+            font-weight: 600; border: none; cursor: pointer;
+        }
+
+        .search-area { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 30px 20px; 
+            flex-shrink: 0;
+        }
+        .search-bar { 
+            width: 40%; min-width: 350px; height: 44px; 
+            background: #ffffff; border-radius: 22px; 
+            margin-bottom: 15px; display: flex; align-items: center; 
+            padding: 0 15px; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .search-bar input { background: transparent; border: none; outline: none; width: 100%; font-size: 14px; margin-left: 10px; }
+
+        .shortcuts { 
+            display: flex; 
+            gap: 18px; 
+            flex-wrap: wrap; 
+            justify-content: center; }
+        .shortcut { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+
+        .icon-box { 
+            width: 38px; 
+            height: 38px; 
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border: 1px solid #ddd; 
+            font-size: 18px;
+        }
+        .label { font-size: 12px; color: #ffffff }
+
+        .content-wrapper {
+            background-color: #ffffff;
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto; 
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.1);
+        }
+
+        .nav-tabs {
+            display: flex; gap: 20px; padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0; margin-bottom: 20px;
+            font-size: 13px; font-weight: 600; color: #5a5a5a;
+        }
+        .active { color: #0078d4; border-bottom: 2px solid #0078d4; padding-bottom: 8px; }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+            align-content: start;
+        }
+
+        .card {
+            background: #ffffff; border-radius: 10px; overflow: hidden;
+            display: flex; flex-direction: column; border: 1px solid #e0e0e0;
+        }
+
+        .img-container { 
+            width: 100%;
+            height: 140px; 
+            background: #f1f5f9;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .img-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+        }
+        
+        .details { padding: 12px; flex: 0; } 
+        .details h3 { font-size: 14px; color: #1a1a1a; margin-bottom: 4px}
+        .details p { font-size: 11px; color: #5a5a5a; }
+
+        .main-story { grid-column: 1 / 7; }
+        .sub-story { grid-column: span 3; }
+        .feature-story { grid-column: 7 / 13; }
+
+        .weather { background: linear-gradient(135deg, #0078d4, #005a9e); color: white; border: none; }
+        .weather .details h3, .weather .details p { color: white; }
+        .temp { font-size: 24px; font-weight: 800; }
+
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-story, .feature-story, .sub-story { grid-column: span 1; }
+            .img-container { height: 180px; }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .search-bar { width: 100%; min-width: 100%; }
+            .content-wrapper { width: 100%; border-radius: 0; }
+            .news-grid { grid-template-columns: 1fr; }
+            .main-story, .sub-story, .feature-story { grid-column: span 1; }
+            .img-container { height: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">:::</div>
+    <button class="auth-btn">Sign in</button>
+</header>
+
+<section class="search-area">
+    <div class="search-bar">🔍 <input type="text" placeholder="Search...">
+    </div>
+    <div class="shortcuts">
+        <div class="shortcut"><div class="icon-box">🤖</div><span class="label">AI</span></div>
+        <div class="shortcut"><div class="icon-box">⚽</div><span class="label">Sports</span></div>
+        <div class="shortcut"><div class="icon-box">📈</div><span class="label">Stocks</span></div>
+        <div class="shortcut"><div class="icon-box">🎮</div><span class="label">Gaming</span></div>
+        <div class="shortcut"><div class="icon-box">☁️</div><span class="label">Weather</span></div>
+    </div>
+</section>
+
+<main class="content-wrapper">
+    <nav class="nav-tabs">
+        <span class="active">Discover</span>
+        <span>Technology</span>
+        <span>Markets</span>
+        <span>Entertainment</span>
+    </nav>
+
+    <div class="news-grid">
+        <div class="card main-story">
+            <div class="img-container"><img src="https://picsum.photos/id/1/800/400"></div>
+            <div class="details"><h3>Quantum Computing Breakthrough</h3><p>Tech • 2h ago</p></div>
+        </div>
+
+        <div class="card sub-story">
+            <div class="img-container"><img src="https://picsum.photos/id/20/400/300"></div>
+            <div class="details"><h3>AI in Education</h3><p>Edu • 4h ago</p></div>
+        </div>
+
+        <div class="card sub-story weather">
+            <div class="details"><h3>Lahore</h3><div class="temp">18°C</div><p>Rainy 🌧️</p></div>
+        </div>
+
+        <div class="card sub-story">
+            <div class="img-container"><img src="https://picsum.photos/id/48/400/300"></div>
+            <div class="details"><h3>Market Recovery</h3><p>Finance • 6h ago</p></div>
+        </div>
+
+        <div class="card sub-story">
+            <div class="img-container"><img src="https://picsum.photos/id/60/400/300"></div>
+            <div class="details"><h3>VR Headsets Boom</h3><p>Gaming • 1d ago</p></div>
+        </div>
+
+        <div class="card feature-story">
+            <div class="img-container"><img src="https://picsum.photos/id/30/800/400"></div>
+            <div class="details"><h3>Smart Cities Future</h3><p>Urban • 1d ago</p></div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
