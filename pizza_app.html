@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <title>Pizza Application</title>
+    <head>
+        <style>
+            * { box-sizing: border-box; }
+
+            body {
+                background-color: #f4f6f8;
+                font-family: Arial;
+                margin: 0;
+            }
+
+            header {
+                text-align: center;
+                padding: 20px;
+                background-color: #1e3a5f;
+                color: white;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                height: 650px;
+                gap: 10px;
+                padding: 20px;
+            }
+
+            .panel {
+                background-color: #ffffff;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                
+            }
+
+            .menu_panel { grid-column: 1; grid-row: 1 / span 2; }
+            .cart_panel { grid-column: 2; grid-row: 1 / span 2; }
+            .login_panel { grid-column: 3; grid-row: 1; }
+            .offer_panel { grid-column: 3; grid-row: 2; }
+
+            #menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+                overflow-y: auto;
+            }
+
+            .pizza {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+                border-radius: 10px;
+                background-color: #fafafa;
+            }
+
+            .pizza img {
+                width: 100%;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+            button {
+                background-color: #1e3a5f;
+                color: white;
+                padding: 8px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 5px;
+            }
+
+            #cart {
+                flex-grow: 1;    
+                overflow-y: auto;     
+                min-height: 0;        
+                margin-bottom: 10px; 
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1 style="margin: 0;">🍕 Pizza Ordering System</h1>
+        </header>
+
+        <div class="container">
+
+            <div class="panel menu_panel">
+                <h3>Pizza Menu</h3>
+                <div id="menu"></div>
+            </div>
+
+            <div class="panel cart_panel">
+                <h3>Your Cart</h3>
+                <div id="cart">Your cart is empty.</div>
+                <div id="total">
+                <p>Total: Rs. 0</p>
+                <p>Discount: Rs. 0</p>
+                <p><strong>Final: Rs. 0</strong></p>
+            </div>
+                <button onclick="Place_order()">Place Order</button>
+            </div>
+
+            <div class="panel login_panel">
+                <h3>User Login</h3>
+                <input type="text" id="username" placeholder="username"><br>
+                <input type="password" id="password" placeholder="password"><br><br>
+                <button onclick="Login()">Login</button>
+            </div>
+
+            <div class="panel offer_panel">
+                <h3>Offers</h3>
+                <div id="Discount_info">Login to view personalized deals.</div>
+            </div>
+
+        </div>
+
+        <script>
+            const pizza = [
+                {name: "Chicken Pizza", price: 1200, image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"},
+                {name: "Cheese Pizza", price: 1000, image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400"},
+                {name: "BBQ Pizza", price: 1500, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"},
+                {name: "Veg Pizza", price: 800, image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=400"}
+            ];
+
+            let cart = [];
+            let Order_count = 0;
+            let Logged_in = false;
+            let users = [];
+
+            function Render_Menu() {
+                document.getElementById("menu").innerHTML = pizza.map((item, index) => `
+                <div class="pizza">
+                    <img src="${item.image}">
+                    <h4>${item.name}</h4>
+                    <p>Rs. ${item.price}</p>
+                    <button onclick="addToCart(${index})">Add to Cart</button>
+                </div>
+                `).join('');
+            }
+
+            function Login() {
+                const user = document.getElementById("username").value;
+                const pass = document.getElementById("password").value;
+
+                if (user && pass) {
+                    users.push({user, pass});
+                    Logged_in = true;
+
+                    document.getElementById("Discount_info").innerHTML =
+                        "✔ 10% off on orders greater then 3000<br>✔ 5% extra after 3 orders";
+
+                    renderCart();
+                }
+            }
+
+            function addToCart(index) {
+                cart.push(pizza[index]);
+                renderCart();
+            }
+
+           function renderCart() {
+                if (cart.length === 0) {
+                    document.getElementById("cart").innerHTML = "Your cart is empty.";
+                    document.getElementById("total").innerHTML = `
+                        <p>Total: Rs. 0</p>
+                        <p>Discount: Rs. 0</p>
+                        <p><strong>Final: Rs. 0</strong></p>`;
+                    return;
+                }
+
+                let html = "";
+                let total = 0;
+
+                cart.forEach(item => {
+                    html += `<p>${item.name} - Rs. ${item.price}</p>`;
+                    total += item.price;
+                });
+
+                let discount = 0;
+
+                if (Logged_in) {
+                    if (total > 3000) {
+                        discount += total * 0.10;
+                    }
+                    if (Order_count >= 3) {
+                        discount += (total - discount) * 0.05;
+                    }
+                }
+
+                let finalTotal = total - discount;
+
+                document.getElementById("cart").innerHTML = html; 
+                document.getElementById("total").innerHTML =
+                    `<p>Total: Rs. ${total}</p>
+                    <p>Discount: Rs. ${discount.toFixed(0)}</p>
+                    <p><strong>Final: Rs. ${finalTotal.toFixed(0)}</strong></p>`;
+            }
+
+            function Place_order() {
+                if (cart.length === 0) {
+                    alert("Cart is empty!");
+                    return;
+                }
+
+                let total = 0;
+                cart.forEach(item => total += item.price);
+
+                let discount = 0;
+
+                if (Logged_in) {
+                    if (total > 3000) discount += total * 0.10;
+                    if (Order_count >= 3) discount += (total - discount) * 0.05;
+                }
+
+                let finalTotal = total - discount;
+
+                Order_count++;
+
+                alert("Final Paid: Rs. " + finalTotal);
+
+                cart = [];
+                renderCart();
+            }
+
+            Render_Menu();
+        </script>
+    </body>
+</html>
