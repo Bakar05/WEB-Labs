@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>ToDo List</title>
+        <style>
+            body { 
+                background-color: whitesmoke; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh; 
+            }
+
+            .todo-container {
+                background-color: #ffffff; 
+                padding: 40px; 
+                border-radius: 15px;
+                width: 380px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+                text-align: center;
+            }
+
+            h1 { margin-bottom: 25px; color: #6c5ce7; }
+
+            .input-group {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 25px;
+            }
+
+            input {
+                flex: 1;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                outline: none;
+            }
+
+            .btn-add {
+                background-color: #6c5ce7; 
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 10px 20px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .task-item {
+                background-color: #f9f9fb;
+                padding: 12px 15px;
+                margin-bottom: 10px;
+                border-radius: 8px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-left: 4px solid #00cec9;
+                color: #2d3436;
+                text-align: left;
+            }
+
+            .btn-remove {
+                background-color: transparent;
+                color: #ff7675;
+                border: 1px solid #ff7675;
+                border-radius: 5px;
+                padding: 4px 8px;
+                cursor: pointer;
+                font-size: 11px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="todo-container"> 
+            <h1>My Tasks</h1>
+            <div class="input-group">
+                <input id="taskInput" type="text" placeholder="Add your tasl">
+                <button class="btn-add" onclick="AddTask()">Add</button>
+            </div>
+            <div id="displayArea"></div>
+        </div>
+
+        <script>
+            function AddTask() {
+                let input = document.getElementById("taskInput");
+                let display = document.getElementById("displayArea");
+
+                if (input.value.trim() !== "") {
+
+                    let div = document.createElement("div");
+                    div.className = "task-item";
+
+                    div.innerHTML = `
+                        <span>${input.value}</span>
+                        <button class="btn-remove" onclick="this.parentElement.remove()">Remove</button>
+                    `;
+
+                    display.appendChild(div);
+
+                    input.value = "";
+                }
+            }
+        </script>
+    </body>
+</html>
